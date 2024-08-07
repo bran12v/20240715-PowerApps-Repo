@@ -8,6 +8,10 @@ namespace Week4Programming
 {
     public static class Game
     {
+        public static bool Running { get; set; } = true;
+        public const bool ex = true; // constant, cant be changed
+
+
         // Static - be the same, regardless of the object
         // associated with the class itself, not the object
         public static void startGame()

@@ -2,6 +2,7 @@
 // note: using
 // import statements
 using System;
+using Week4Programming.Encounters;
 using Week4Programming.Entities;
 
 // namespace
@@ -18,60 +19,46 @@ namespace Week4Programming
             Game.startGame();
             Program p = new Program();
             p.characterInit();
-            //Console.WriteLine("Please choose what action you would like to take: (Create, move)");
-            //String input = Console.ReadLine();
-            //Character newCharacter = null;
-            //if (input != null && (input.Equals("Create") || input.Equals("Move")))
-            //{
-            //    if (input.Equals("Create"))
-            //    {
-            //        Console.WriteLine("Enter your Characters name: ");
-            //        String name = Console.ReadLine();
-            //        newCharacter = new Character();
-            //        newCharacter.Name = name;
-            //        Console.WriteLine($"{newCharacter.Name}");
-            //    }
-            //    if (input.Equals("Move"))
-            //    {
-            //        // TODO
-            //    }
-            //}
+            while (Game.Running) 
+            {
+                Console.WriteLine("Where would you like to go first? (Town or Dungeon)");
+                switch (Console.ReadLine())
+                {
+                    case "Dungeon":
+                        Character boar = new Boar("bob", 17, 4, 0.05, 7);
+                        Character slime = new Slime("bubble", 19, 5, 0.25, 5);
 
-            Character boar = new Boar(); // polymorphism - many forms
-            boar.Name = "bob";
-            Character slime = new Slime();
-            slime.Name = "harrison";
+                        DungeonEncounter dungeon = new DungeonEncounter(1.0, true, "Muckdeep Caverns", p.player!, [boar, slime], Difficulty.Medium, 1, 3);
 
-            Character[] array = new Character[2];
-            array[0] = boar;
-            array[1] = slime;
+                        for (int i = 0; i < dungeon.NumOfRoomsInDungeon; i++)
+                        {
+                            dungeon.Event();
+                        }
 
-            Console.WriteLine($"Here are our 2 creatures! We have {array[0].Name} and {array[1].Name}");
-            array[0].attack();
-            array[1].attack();
+                        Console.WriteLine($"You have received: {dungeon.determineRewards()} Gold. \n Your next quest is: {dungeon.giveQuest()}");
+                        break;
+
+                    case "Town":
+                        break;
+
+                    default:
+                        break;
+                }
+
+                Console.WriteLine("Would you like to continue? (yes or no)");
+                if(Console.ReadLine()!.Equals("no"))
+                {
+                    Game.Running = false;
+                }
+            }
         }
 
         public void characterInit()
         {
-            Brandon = new Character();
-            Brandon.Name = "Brandon";
-            Brandon.Level = 300;
-            Brandon.HealthPoints = 12;
-            Brandon.DodgeChance = 0.05;
-            Brandon.BaseDamage = 10;
-            Brandon.move(10);
-            Brandon.attack();
-
-            player = new Player();
-            player.Weapon = new Weapon();
-            player.Weapon.DamageLevel = 2;
-            player.Name = "Jaydon";
-            player.Level = 299;
-            player.HealthPoints = 13;
-            player.DodgeChance = 0.1;
-            player.BaseDamage = 10;
-            player.ClassName = "warrior";
-            player.Run = false;
+            Brandon = new Character("Brandon", 300, 12, 0.05, 10);
+            player = new Player("NormalPerson", 13, 13, 0.1, 10, "Warrior", new Weapon(100.0, "Sword", 1, "Common", 7.0), false);
+            //Brandon.move(10);
+            //Brandon.attack();
         }
 
         public void restart()

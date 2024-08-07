@@ -13,6 +13,19 @@ namespace Week4Programming.Entities
         public Weapon? Weapon { get; set; }
         public bool Run { get; set; }
 
+        // This can be used as a constructor
+        public Player() : this("bob", 1, 1, 0, 1, "rogue", new Weapon(70.2, "Dagger", 1, "Common", 4.5), true) { }
+
+        // just like Base can
+        public Player(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage,
+            string? ClassName, Weapon? Weapon, bool Run) : 
+            base(Name, HealthPoints, Level, DodgeChance, BaseDamage) // refers to the parent con
+        {
+            this.ClassName = ClassName;
+            this.Weapon = Weapon;
+            this.Run = Run;
+        }
+
         public bool toggle()
         {
             return !Run;

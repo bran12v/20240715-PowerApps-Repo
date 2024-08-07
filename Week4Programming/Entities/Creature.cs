@@ -8,7 +8,8 @@ namespace Week4Programming.Entities
 {
     public abstract class Creature : Character
     {
-
+        public Creature(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage) : 
+            base(Name, HealthPoints, Level, DodgeChance, BaseDamage) { }
 
         // Abstract method, no implementation - will be implemented in an derived classes
         public abstract void talk();

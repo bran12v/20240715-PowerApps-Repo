@@ -32,25 +32,35 @@ using System.Threading.Tasks;
 
 namespace Week4Programming.Entities
 {
-
-
     public class Character
     {
         // fields (characteristics) has
         public string Name { get; set; } // syntaxic sugar
         public double HealthPoints { get; set; }
-        //public int Level { 
-        //    get {
-        //        return 1;
-        //    }
-        //    set
-        //    {
-        //        Level = 1;
-        //    }
-        //}
         public int Level { get; set; }
         public double DodgeChance { get; set; }
         public int BaseDamage { get; set; }
+
+        // contructor, has the same name as the class. 
+        // doesn't have a return type
+        public Character() // default contructor
+        {
+            Name = "Rookie";
+            HealthPoints = 1;
+            Level = 1;
+            DodgeChance = 0;
+            BaseDamage = 1;
+        }
+
+        // constructor overloading
+        public Character(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage)
+        {
+            this.Name = Name; // this is a reference to the class, it's how you get the fields of THIS CLASS
+            this.HealthPoints = HealthPoints;
+            this.Level = Level;
+            this.DodgeChance = DodgeChance;
+            this.BaseDamage = BaseDamage;
+        }
 
         // methods (actions) can do
         public void move(int amount)

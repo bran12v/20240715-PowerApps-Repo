@@ -8,6 +8,9 @@ namespace Week4Programming.Entities
 {
     public class Boar : Creature
     {
+        public static int NumOfLegs { get; set; } = 4;
+        public Boar(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage) :
+            base(Name, HealthPoints, Level, DodgeChance, BaseDamage) { }
         public override void talk()
         {
             Console.WriteLine("RAwDAOWDASDWAWDA");

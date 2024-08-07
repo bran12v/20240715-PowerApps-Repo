@@ -8,6 +8,8 @@ namespace Week4Programming.Entities
 {
     public class Slime : Creature
     {
+        public Slime(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage) :
+            base(Name, HealthPoints, Level, DodgeChance, BaseDamage) { }
         public override void talk()
         {
             Console.WriteLine("Bubblebubblebubblebubblebubblebubblebubblebubble");
