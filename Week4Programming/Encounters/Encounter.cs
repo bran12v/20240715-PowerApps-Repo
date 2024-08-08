@@ -27,6 +27,9 @@ namespace Week4Programming.Encounters
 
         public abstract double determineRewards();
 
-        public abstract string giveQuest();
+        public string giveQuest()
+        {
+            return Quest.assignQuest();
+        }
     }
 }

@@ -95,11 +95,6 @@ namespace Week4Programming.Encounters
             }
             return reward * 50;
         }
-
-        public override string giveQuest()
-        {
-            return Quest.assignQuest();
-        }
     }
 
     public enum Difficulty

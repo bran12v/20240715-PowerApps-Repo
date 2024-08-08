@@ -32,7 +32,7 @@ using System.Threading.Tasks;
 
 namespace Week4Programming.Entities
 {
-    public class Character
+    public class Character : IComparable//, IEnumerable // for each
     {
         // fields (characteristics) has
         public string Name { get; set; } // syntaxic sugar
@@ -40,6 +40,7 @@ namespace Week4Programming.Entities
         public int Level { get; set; }
         public double DodgeChance { get; set; }
         public int BaseDamage { get; set; }
+        public List<string> Inventory { get; set; } // Generic
 
         // contructor, has the same name as the class. 
         // doesn't have a return type
@@ -50,16 +51,18 @@ namespace Week4Programming.Entities
             Level = 1;
             DodgeChance = 0;
             BaseDamage = 1;
+            Inventory = new List<string>();
         }
 
         // constructor overloading
-        public Character(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage)
+        public Character(string Name, double HealthPoints, int Level, double DodgeChance, int BaseDamage, List<string> Inventory)
         {
             this.Name = Name; // this is a reference to the class, it's how you get the fields of THIS CLASS
             this.HealthPoints = HealthPoints;
             this.Level = Level;
             this.DodgeChance = DodgeChance;
             this.BaseDamage = BaseDamage;
+            this.Inventory = Inventory;
         }
 
         // methods (actions) can do
@@ -74,5 +77,34 @@ namespace Week4Programming.Entities
         {
             Console.WriteLine("Attacking");
         }
+
+        // implement a method to compare an object to the character class
+        public int CompareTo(object? to)
+        {
+            if (this == null || to == null)
+            {
+                return 1;
+            }
+            if (this.GetType() != to.GetType()) 
+            {
+                return 1; 
+            }
+            else
+            {
+                Character toCharacter = (Character) to;
+                if (this.Name.Equals(toCharacter!.Name))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+
+        // MoveNext()
+        // Current
+        // Reset()
     }
 }
