@@ -13,7 +13,7 @@ namespace Week4Programming
         public Character? Brandon;
         public Player? player;
         public Townsperson? townsPerson;
-        private const string csvFileLocation = @"C:\Users\SSAdmin\Downloads\ExampleCSV.csv";
+        private const string csvFileLocation = @"C:\Users\SSAdmin\source\repos\Week4Programming\Week4Programming\ExampleCSV.csv";
         private Program() { }
 
         private struct Position
