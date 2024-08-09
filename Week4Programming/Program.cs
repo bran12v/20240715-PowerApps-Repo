@@ -8,13 +8,12 @@ using Week4Programming.Entities;
 // namespace
 namespace Week4Programming
 {
-    public class Program // Design Pattern: Singleton
+    public class Program
     {
         public Character? Brandon;
         public Player? player;
         public Townsperson? townsPerson;
         private const string csvFileLocation = @"C:\Users\SSAdmin\source\repos\Week4Programming\Week4Programming\ExampleCSV.csv";
-        private Program() { }
 
         private struct Position
         {
