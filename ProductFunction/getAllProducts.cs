@@ -7,16 +7,16 @@ using Microsoft.Azure.Cosmos;
 
 namespace ProductFunction
 {
-    public class ProductFunction
+    public class getAllProducts
     {
-        private readonly ILogger<ProductFunction> _logger; // logger, Console.writeline
+        private readonly ILogger<getAllProducts> _logger; // logger, Console.writeline
 
-        public ProductFunction(ILogger<ProductFunction> logger) // dependency injection
+        public getAllProducts(ILogger<getAllProducts> logger) // dependency injection
         {
             _logger = logger;
         }
 
-        [Function("ProductFunction")] // get all products
+        [Function("getAllProducts")] // get all products
         public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "getAllProducts")] 
             HttpRequestData req, FunctionContext executionContext)
         {
@@ -46,10 +46,20 @@ namespace ProductFunction
                     FeedResponse<Product> res = await feed.ReadNextAsync();
 
                     // iterate over query results
+                    int i = 0;
                     foreach (Product item in res)
                     {
-                        response.WriteString(item.ToString() ?? "");
+                        if (i == 0)
+                        {
+                            response.WriteString(("[" + item.ToString()) ?? "");
+                            i = 1;
+                        }
+                        else
+                        {
+                            response.WriteString((", " + item.ToString()) ?? "");
+                        }
                     }
+                    response.WriteString("]");
                 }
             }
             catch (Exception ex)
